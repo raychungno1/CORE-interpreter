@@ -22,47 +22,65 @@ class Tokenizer:
                 print(line, end="")
                 if not(self.__tokenize_line(line)):
                     return
+        self.token_ids.append(Tokenizer.token_map["EOF"])
 
+    for idx, val in enumerate(self.token_ids):
+        if val == "0":
+            self.
+
+        print(idx, val)
         print(self.tokens)
         print(self.token_ids)
 
     def __tokenize_line(self, line):
         index = 0
+        whitespace_error = False
+        last_token_symbol = False
 
         while index < len(line):
             char = line[index]
 
-            token = " "
+            token = ""
             if char.isdigit():
                 token = Tokenizer.__tokenize_int(line, index)
+                whitespace_error = len(self.tokens) > 0 and not(last_token_symbol) and not(self.tokens[-1] in Tokenizer.whitespace)
                 self.token_ids.append(Tokenizer.token_map["integer"])
+                last_token_symbol = False
 
             elif char in Tokenizer.whitespace:
                 token = Tokenizer.__tokenize_whitespace(line, index)
-                self.token_ids.append(0)
+                self.token_ids.append("0")
 
             elif char.isupper():
                 token = Tokenizer.__tokenize_identifier(line, index)
+                whitespace_error = len(self.tokens) > 0 and not(last_token_symbol) and not(self.tokens[-1] in Tokenizer.whitespace)
                 self.token_ids.append(Tokenizer.token_map["id"])
+                last_token_symbol = False
 
             elif char.islower():
                 token = Tokenizer.__tokenize_word(line, index)
                 if len(token) > 0:
+                    whitespace_error = len(self.tokens) > 0 and not(last_token_symbol) and not(self.tokens[-1] in Tokenizer.whitespace)
                     self.token_ids.append(Tokenizer.token_map[token])
+                    last_token_symbol = False
 
             else:
                 token = Tokenizer.__tokenize_symbol(line, index)
                 if len(token) > 0:
                     self.token_ids.append(Tokenizer.token_map[token])
+                    last_token_symbol = True
 
             if len(token) == 0:
                 print("invalid token")
                 return False
 
+            if whitespace_error:
+                print("whitespace error: ", token)
+                return False
+
             self.tokens.append(token)
             index += len(token)
 
-        self.token_ids.append(Tokenizer.token_map["EOF"])
         return True
 
     def __tokenize_int(line, start_index):
