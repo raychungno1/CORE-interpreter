@@ -1,0 +1,19 @@
+Overall Design:
+  A Tokenizer object is initialized with a filename, which will tokenize the first line of the that file. Then, calls to getToken() will return the ID the next token, and skipToken() will consume the current token and move onto the next one.
+  
+  When a whole line is comsumed after calling skipToken(), the object will automatically tokenize the next line of the file, repeating the processes until the end of the file. 
+
+User Manual:
+  Given a string filename, instantiate with "t = new Tokenizer(filename)"
+
+  To get the id of the current token, call "t.getToken()"
+
+  To skip to the next token, call "t.skipToken()"
+
+  If the current token is an integer, get the integer value by calling "t.intVal()"
+
+  If the current token is an identifier, get the identifier value by calling "t.idName()"
+
+Testing:
+  The tokenizer was tested with the sample programs provided in "testDataForTokenizer.txt", as well as a few simple test cases to ensure greedy tokenization.
+  I have not found any known bugs or missing features. 

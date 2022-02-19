@@ -1,4 +1,4 @@
-my_dict = {
+TOKEN_MAP = {
     1: 'program',
     2: 'begin',
     3: 'end',
@@ -67,7 +67,3 @@ my_dict = {
     'id': 32,
     'EOF': 33,
 }
-
-with open('token-map.csv', 'w') as f:
-    for key in my_dict.keys():
-        f.write("\"%s\",\"%s\"\n" % (key, my_dict[key]))
