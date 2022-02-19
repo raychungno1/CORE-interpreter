@@ -7,13 +7,13 @@ class Tokenizer:
     words = ["program", "begin", "end", "int", "if",
              "then", "else", "while", "loop", "read", "write"]
 
+    # Load token mapping
     with open('token-map.csv', mode='r') as infile:
         reader = csv.reader(infile)
         token_map = dict((rows[0], rows[1]) for rows in reader)
 
     def __init__(self, file_name):
 
-        # Load token mapping
         self.tokens = []
         self.token_ids = []
         with open(file_name) as input_file:
