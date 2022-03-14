@@ -1,11 +1,14 @@
 import sys
-from token_map import TOKEN_MAP
-from tokenizer import Tokenizer
+from tokenizer import TOKEN_MAP, Tokenizer
+from parsetree import Prog
 
-file_name = sys.argv[1]
-tokenizer = Tokenizer(file_name)
+code = sys.argv[1]
+input = sys.argv[1]
+tokenizer = Tokenizer(code)
 
-while token:= tokenizer.getToken():
+while token := tokenizer.getToken():
     print(token)
 
     tokenizer.skipToken()
+
+prog = Prog()

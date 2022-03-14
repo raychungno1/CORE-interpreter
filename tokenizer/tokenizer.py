@@ -1,5 +1,4 @@
-from token_map import TOKEN_MAP
-
+from tokenizer import TOKEN_MAP
 
 class Tokenizer:
     def __init__(self, file_name):
