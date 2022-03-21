@@ -1,4 +1,0 @@
-class Assign:
-  def __init__(self):
-    self.id = None
-    self.exp = None

@@ -1,19 +1,45 @@
+from tokenize import Token
 from tokenizer import TOKEN_MAP
 
+
 class Tokenizer:
-    def __init__(self, file_name):
+    instance = None
+
+    @staticmethod
+    def get_token():
+        return Tokenizer.instance.getToken()
+
+    @staticmethod
+    def skip_token():
+        return Tokenizer.instance.skipToken()
+
+    @staticmethod
+    def int_val():
+        return Tokenizer.instance.intVal()
+
+    @staticmethod
+    def id_name():
+        return Tokenizer.instance.idName()
+
+    def __init__(self, code_file, input_file):
         """Initializes a new Tokenizer with input file \"file_name\"."""
+        if (Tokenizer.instance is not None):
+            return
+
         self.tokens = []
         self.token_ids = []
         self.isEOF = False
-        self.input_file = open(file_name, "r")
+        self.code_file = open(code_file, "r")
+        self.input_file = open(input_file, "r")
 
-        line = self.input_file.readline()
+        line = self.code_file.readline()
         if (line):
             self.__tokenize_line(line)
         else:
             self.isEOF = True
             self.token_ids.append(TOKEN_MAP["EOF"])
+
+        Tokenizer.instance = self
 
     def getToken(self):
         """Return the id of the current token,
@@ -37,7 +63,7 @@ class Tokenizer:
             if (TOKEN_MAP[token] == "integer" or TOKEN_MAP[token] == "id"):
                 self.tokens.pop(0)
 
-        while not(self.token_ids) and (line := self.input_file.readline()):
+        while not(self.token_ids) and (line := self.code_file.readline()):
             self.__tokenize_line(line)
 
     def intVal(self):
