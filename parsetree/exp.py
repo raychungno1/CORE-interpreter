@@ -28,7 +28,16 @@ class Exp:
             self.exp.parse()
 
     def print(self):
-        return self
+        self.fac.print()
+        if self.alt_no == 1:
+            return
+
+        if self.alt_no == 2:
+            print(" + ", end = "")
+        else:
+            print(" - ", end = "")
+
+        self.exp.print()
 
     def execute(self):
         return self

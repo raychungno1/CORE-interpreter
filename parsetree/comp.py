@@ -24,9 +24,14 @@ class Comp:
         self.op_2 = Op()
         self.op_2.parse()
         
-        Tokenizer.check_and_skip_token("(", "Comparison")
+        Tokenizer.check_and_skip_token(")", "Comparison")
 
     def print(self):
+        print("(", end = "")
+        self.op_1.print()
+        print(f" {TOKEN_MAP[self.comp_op]} ", end = "")
+        self.op_2.print()
+        print(")", end = "")
         return self
 
     def execute(self):

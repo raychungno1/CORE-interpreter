@@ -14,8 +14,10 @@ class Input:
 
         Tokenizer.check_and_skip_token(";", "Input")
 
-    def print(self):
-        return self
+    def print(self, depth = 0, tab = "\t"):
+        print(depth * tab + "read ", end = "")
+        self.id_list.print()
+        print(";")
 
     def execute(self):
         return self

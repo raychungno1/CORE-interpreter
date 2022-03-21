@@ -19,7 +19,11 @@ class Fac:
             self.fac.parse()
 
     def print(self):
-        return self
+        self.op.print()
+
+        if self.alt_no == 2:
+            print(" * ", end = "")
+            self.fac.print()
 
     def execute(self):
         return self

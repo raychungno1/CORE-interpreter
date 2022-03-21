@@ -43,7 +43,24 @@ class Cond:
             self.comp.parse()
 
     def print(self):
-        return self
+        if self.alt_no == 1:
+            self.comp.print()
+
+        elif self.alt_no == 2:
+            print("!", end = "")
+            self.cond_1.print()
+
+        else:
+            print("[", end = "")
+            self.cond_1.print()
+            
+            if self.alt_no == 3:
+                print(" && ")
+            else:
+                print(" || ")
+
+            self.cond_2.print()
+            print("]", end = "")
 
     def execute(self):
         return self

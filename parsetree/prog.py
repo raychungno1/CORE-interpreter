@@ -21,8 +21,15 @@ class Prog:
 
         Tokenizer.check_and_skip_token("end", "Program")
 
-    def print(self):
-        print("printing")
+        return self
+
+    def print(self, depth = 0, tab = "\t"):
+        print(depth * tab + "program")
+        self.decl_seq.print(depth+1, tab)
+        print(depth * tab + "begin")
+        self.stmt_seq.print(depth+1, tab)
+        print(depth * tab + "end")
+
         return self
 
     def execute(self):

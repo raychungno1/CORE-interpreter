@@ -25,7 +25,10 @@ class IdList:
             self.id_list.parse()
 
     def print(self):
-        return self
+        print(self.id, end = "")
+        if self.alt_no == 2:
+            print(", ", end = "")
+            self.id_list.print()
 
     def execute(self):
         return self

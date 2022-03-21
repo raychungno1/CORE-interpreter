@@ -14,8 +14,10 @@ class Output:
 
         Tokenizer.check_and_skip_token(";", "Output")
 
-    def print(self):
-        return self
+    def print(self, depth = 0, tab = "\t"):
+        print(depth * tab + "write ", end = "")
+        self.id_list.print()
+        print(";")
 
     def execute(self):
         return self

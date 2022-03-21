@@ -48,8 +48,21 @@ class Stmt:
         else:
             raise GrammarError("id / if / while / read / write", "Statement")
 
-    def print(self):
-        return self
+    def print(self, depth=0, tab = "\t"):
+        if self.alt_no == 1:
+            self.assign.print(depth, tab)
+
+        elif self.alt_no == 2:
+            self.if_then.print(depth, tab)
+
+        elif self.alt_no == 3:
+            self.loop.print(depth, tab)
+
+        elif self.alt_no == 4:
+            self.input.print(depth, tab)
+
+        else:
+            self.output.print(depth, tab)
 
     def execute(self):
         return self
