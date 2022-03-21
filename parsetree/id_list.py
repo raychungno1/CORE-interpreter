@@ -1,3 +1,4 @@
+from error import GrammarError
 from tokenizer import TOKEN_MAP, Tokenizer
 
 
@@ -9,14 +10,13 @@ class IdList:
 
     def parse(self):
         if (Tokenizer.get_token() == TOKEN_MAP["id"]):
-            self.id = Tokenizer.id_name
+            self.id = Tokenizer.id_name()
+            Tokenizer.skip_token()
             
             from .id import Id
             Id.add_id(self.id)
-            Tokenizer.skip_token()
         else:
-            print(f"Missing id name in id list")
-            return
+            raise GrammarError("<id>", "Id List")
 
         if (Tokenizer.get_token() == TOKEN_MAP[","]):
             Tokenizer.skip_token()

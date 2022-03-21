@@ -7,36 +7,20 @@ class Loop:
         self.stmt_seq = None
 
     def parse(self):
-        if (Tokenizer.get_token() == TOKEN_MAP["while"]):
-            Tokenizer.skip_token()
-        else:
-            print("Missing \"while\" keyword in loop statement")
-            return
+        Tokenizer.check_and_skip_token("while", "Loop")
 
         from .cond import Cond
         self.cond = Cond()
         self.cond.parse()
 
-        if (Tokenizer.get_token() == TOKEN_MAP["loop"]):
-            Tokenizer.skip_token()
-        else:
-            print("Missing \"loop\" keyword in loop statement")
-            return
+        Tokenizer.check_and_skip_token("loop", "Loop")
 
         from .stmt_seq import StmtSeq
         self.stmt_seq = StmtSeq()
         self.stmt_seq.parse()
 
-        if (Tokenizer.get_token() == TOKEN_MAP["end"]):
-            Tokenizer.skip_token()
-        else:
-            print("Missing \"end\" keyword in loop statement")
-
-        if (Tokenizer.get_token() == TOKEN_MAP[";"]):
-            Tokenizer.skip_token()
-        else:
-            print("Missing \";\" keyword in loop statement")
-            return
+        Tokenizer.check_and_skip_token("end", "if-then")
+        Tokenizer.check_and_skip_token(";", "if-then")
 
     def print(self):
         return self

@@ -1,5 +1,25 @@
+from tokenizer import TOKEN_MAP, Tokenizer
+
+
 class Fac:
     def __init__(self):
         self.alt_no = 1
         self.op = None
         self.fac = None
+
+    def parse(self):
+        from .op import Op
+        self.op = Op()
+        self.op.parse()
+
+        if Tokenizer.get_token() == TOKEN_MAP["*"]:
+            self.alt_no = 2
+            Tokenizer.skip_token()
+            self.fac = Fac()
+            self.fac.parse()
+
+    def print(self):
+        return self
+
+    def execute(self):
+        return self

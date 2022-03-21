@@ -1,3 +1,4 @@
+from error import GrammarError
 from tokenizer import TOKEN_MAP, Tokenizer
 
 
@@ -45,7 +46,7 @@ class Stmt:
             self.output.parse()
 
         else:
-            print(f"Invalid statement")
+            raise GrammarError("id / if / while / read / write", "Statement")
 
     def print(self):
         return self

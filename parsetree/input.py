@@ -6,21 +6,13 @@ class Input:
         self.id_list = None
 
     def parse(self):
-        if (Tokenizer.get_token() == TOKEN_MAP["read"]):
-            Tokenizer.skip_token()
-        else:
-            print("Missing \"read\" keyword in input statement")
-            return
+        Tokenizer.check_and_skip_token("read", "Input")
 
         from .id_list import IdList
         self.id_list = IdList()
         self.id_list.parse()
 
-        if (Tokenizer.get_token() == TOKEN_MAP[";"]):
-            Tokenizer.skip_token()
-        else:
-            print("Missing \";\" keyword in loop statement")
-            return
+        Tokenizer.check_and_skip_token(";", "Input")
 
     def print(self):
         return self

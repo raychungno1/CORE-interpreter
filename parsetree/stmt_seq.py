@@ -12,13 +12,7 @@ class StmtSeq:
         self.stmt = Stmt()
         self.stmt.parse()
 
-        token = Tokenizer.get_token()
-        if (token == TOKEN_MAP["id"] or
-            token == TOKEN_MAP["if"] or
-            token == TOKEN_MAP["while"] or
-            token == TOKEN_MAP["read"] or
-                token == TOKEN_MAP["write"]):
-
+        if TOKEN_MAP[Tokenizer.get_token()] in ["id", "if", "while", "read", "write"]:
             self.alt_no = 2
             self.stmt_seq = StmtSeq()
             self.stmt_seq.parse()

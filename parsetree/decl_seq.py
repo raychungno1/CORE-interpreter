@@ -12,7 +12,7 @@ class DeclSeq:
         self.decl = Decl()
         self.decl.parse()
 
-        if (Tokenizer.get_token() != TOKEN_MAP["begin"]):
+        if Tokenizer.get_token() != TOKEN_MAP["begin"]:
             self.alt_no = 2
             self.decl_seq = DeclSeq()
             self.decl_seq.parse()

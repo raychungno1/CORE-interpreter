@@ -6,21 +6,13 @@ class Decl:
         self.id_list = None
 
     def parse(self):
-        if (Tokenizer.get_token() == TOKEN_MAP["int"]):
-            Tokenizer.skip_token()
-        else:
-            print(f"Missing \"int\" keyword in declaration statement")
-            return
+        Tokenizer.check_and_skip_token("int", "Declaration")
 
         from .id_list import IdList
         self.id_list = IdList()
         self.id_list.parse()
 
-        if (Tokenizer.get_token() == TOKEN_MAP[";"]):
-            Tokenizer.skip_token()
-        else:
-            print(f"Missing \";\" keyword in declaration statement")
-            return
+        Tokenizer.check_and_skip_token(";", "Declaration")
 
     def print(self):
         return self

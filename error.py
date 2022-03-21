@@ -7,3 +7,12 @@ class GrammarError(Exception):
 
     def __str__(self):
         return f"Expected \"{self.token}\" in statement \"{self.stmt_type}\""
+
+class IdMissingError(Exception):
+    """Error raised for a missing id"""
+
+    def __init__(self, id_name):
+        self.id_name = id_name
+
+    def __str__(self):
+        return f"Identifier \"{self.id_name}\" was not declared"

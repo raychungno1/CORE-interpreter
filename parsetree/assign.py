@@ -1,3 +1,4 @@
+from error import GrammarError, IdMissingError
 from tokenizer import TOKEN_MAP, Tokenizer
 
 
@@ -7,29 +8,23 @@ class Assign:
         self.exp = None
 
     def parse(self):
-        from .id import Id
-        if (Tokenizer.get_token() == TOKEN_MAP["id"] and Id.has_id(Tokenizer.id_name())):
-            self.id = Tokenizer.id_name()
-            Tokenizer.skip_token()
-        else:
-            print("Missing id in assignment statement")
-            return
+        if Tokenizer.get_token() != TOKEN_MAP["id"]:
+            raise GrammarError("<id>", "Assign")
 
-        if (Tokenizer.get_token() == TOKEN_MAP["="]):
-            Tokenizer.skip_token()
-        else:
-            print("Missing \"=\" keyword in assignment statement")
-            return
+        self.id = Tokenizer.id_name()
+        Tokenizer.skip_token()
+
+        from .id import Id
+        if not Id.has_id(self.id):
+            raise IdMissingError(Tokenizer.id_name())
+
+        Tokenizer.check_and_skip_token("=", "Assign")
 
         from .exp import Exp
         self.exp = Exp()
         self.exp.parse()
 
-        if (Tokenizer.get_token() == TOKEN_MAP[";"]):
-            Tokenizer.skip_token()
-        else:
-            print("Missing \";\" keyword in assignment statement")
-            return
+        Tokenizer.check_and_skip_token(";", "Assign")
 
     def print(self):
         return self

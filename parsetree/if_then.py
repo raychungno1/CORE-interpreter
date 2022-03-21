@@ -9,41 +9,26 @@ class IfThen:
         self.stmt_seq_2 = None
 
     def parse(self):
-        if (Tokenizer.get_token() == TOKEN_MAP["if"]):
-            Tokenizer.skip_token()
-        else:
-            print("Missing \"if\" keyword in if-then statement")
-            return
+        Tokenizer.check_and_skip_token("if", "if-then")
 
         from .cond import Cond
         self.cond = Cond()
         self.cond.parse()
 
-        if (Tokenizer.get_token() == TOKEN_MAP["then"]):
-            Tokenizer.skip_token()
-        else:
-            print("Missing \"then\" keyword in if-then statement")
-            return
+        Tokenizer.check_and_skip_token("then", "if-then")
 
         from .stmt import Stmt
         self.stmt_seq_1 = Stmt()
         self.stmt_seq_1.parse()
 
         if (Tokenizer.get_token() == TOKEN_MAP["else"]):
+            self.alt_no = 2
             Tokenizer.skip_token()
             self.stmt_seq_2 = Stmt()
             self.stmt_seq_2.parse()
 
-        if (Tokenizer.get_token() == TOKEN_MAP["end"]):
-            Tokenizer.skip_token()
-        else:
-            print("Missing \"end\" keyword in if-then statement")
-
-        if (Tokenizer.get_token() == TOKEN_MAP[";"]):
-            Tokenizer.skip_token()
-        else:
-            print("Missing \";\" keyword in if-then statement")
-            return
+        Tokenizer.check_and_skip_token("end", "if-then")
+        Tokenizer.check_and_skip_token(";", "if-then")
 
     def print(self):
         return self

@@ -1,6 +1,4 @@
-from tokenize import Token
 from tokenizer import TOKEN_MAP
-
 
 class Tokenizer:
     instance = None
@@ -21,9 +19,19 @@ class Tokenizer:
     def id_name():
         return Tokenizer.instance.idName()
 
+    @staticmethod
+    def check_and_skip_token(token, stmt_type):
+        """Checks if the next token matches a given token type, raising an error otherwise."""
+
+        if Tokenizer.get_token() == TOKEN_MAP[token]:
+                Tokenizer.skip_token()
+        else:
+            from error import GrammarError
+            raise GrammarError(token, stmt_type)
+
     def __init__(self, code_file, input_file):
         """Initializes a new Tokenizer with input file \"file_name\"."""
-        if (Tokenizer.instance is not None):
+        if Tokenizer.instance is not None:
             return
 
         self.tokens = []

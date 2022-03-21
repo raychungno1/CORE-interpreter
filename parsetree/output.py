@@ -6,21 +6,13 @@ class Output:
         self.id_list = None
 
     def parse(self):
-        if (Tokenizer.get_token() == TOKEN_MAP["write"]):
-            Tokenizer.skip_token()
-        else:
-            print("Missing \"write\" keyword in output statement")
-            return
+        Tokenizer.check_and_skip_token("write", "Output")
 
         from .id_list import IdList
         self.id_list = IdList()
         self.id_list.parse()
 
-        if (Tokenizer.get_token() == TOKEN_MAP[";"]):
-            Tokenizer.skip_token()
-        else:
-            print("Missing \";\" keyword in loop statement")
-            return
+        Tokenizer.check_and_skip_token(";", "Output")
 
     def print(self):
         return self
