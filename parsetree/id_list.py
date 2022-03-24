@@ -1,4 +1,4 @@
-from error import GrammarError
+from error import GrammarError, IdMissingError
 from tokenizer import TOKEN_MAP, Tokenizer
 
 
@@ -15,6 +15,9 @@ class IdList:
             
             from .id import Id
             Id.add_id(self.id)
+            if not Id.has_id(self.id):
+                raise IdMissingError(self.id)
+
         else:
             raise GrammarError("<id>", "Id List")
 

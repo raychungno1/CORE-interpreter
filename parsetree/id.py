@@ -1,3 +1,6 @@
+from error import IdDuplicateError
+
+
 class Id:
     declaring = True
     identifiers = {}
@@ -5,6 +8,9 @@ class Id:
     @staticmethod
     def add_id(name):
         if Id.declaring:
+            if name in Id.identifiers:
+                raise IdDuplicateError(name)
+                
             Id.identifiers[name] = None
 
     @staticmethod

@@ -16,7 +16,7 @@ class Assign:
 
         from .id import Id
         if not Id.has_id(self.id):
-            raise IdMissingError(Tokenizer.id_name())
+            raise IdMissingError(self.id)
 
         Tokenizer.check_and_skip_token("=", "Assign")
 

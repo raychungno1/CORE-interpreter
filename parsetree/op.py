@@ -1,4 +1,4 @@
-from error import GrammarError
+from error import GrammarError, IdMissingError
 from tokenizer import TOKEN_MAP, Tokenizer
 
 
@@ -20,6 +20,10 @@ class Op:
             self.alt_no = 2
             self.id = Tokenizer.id_name()
             Tokenizer.skip_token()
+
+            from .id import Id
+            if not Id.has_id(self.id):
+                raise IdMissingError(self.id)
 
         elif first_token == TOKEN_MAP["("]:
             self.alt_no = 3

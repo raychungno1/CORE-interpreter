@@ -55,9 +55,9 @@ class Cond:
             self.cond_1.print()
             
             if self.alt_no == 3:
-                print(" && ")
+                print(" && ", end = "")
             else:
-                print(" || ")
+                print(" || ", end = "")
 
             self.cond_2.print()
             print("]", end = "")

@@ -92,6 +92,7 @@ class Tokenizer:
         last_token_symbol = False
 
         while index < len(line):
+            token = ""
 
             if token := Tokenizer.__tokenize_whitespace(line, index):
                 whitespace_present = True
@@ -176,7 +177,7 @@ class Tokenizer:
         elif line[end_index] in ";,[]()+-*":
             end_index += 1
 
-        elif line.find("||", start_index) != -1 or line.find("&&", start_index) != -1:
+        elif line[start_index:].find("||") == 0 or line[start_index:].find("&&") == 0:
             end_index += 2
 
         return line[start_index: end_index]

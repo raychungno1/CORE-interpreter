@@ -17,23 +17,23 @@ class IfThen:
 
         Tokenizer.check_and_skip_token("then", "if-then")
 
-        from .stmt import Stmt
-        self.stmt_seq_1 = Stmt()
+        from .stmt_seq import StmtSeq
+        self.stmt_seq_1 = StmtSeq()
         self.stmt_seq_1.parse()
 
         if (Tokenizer.get_token() == TOKEN_MAP["else"]):
             self.alt_no = 2
             Tokenizer.skip_token()
-            self.stmt_seq_2 = Stmt()
+            self.stmt_seq_2 = StmtSeq()
             self.stmt_seq_2.parse()
 
         Tokenizer.check_and_skip_token("end", "if-then")
         Tokenizer.check_and_skip_token(";", "if-then")
 
     def print(self, depth = 0, tab = "\t"):
-        print(depth * tab + "if", end = "")
+        print(depth * tab + "if ", end = "")
         self.cond.print()
-        print(depth * tab + "then")
+        print(" then")
         self.stmt_seq_1.print(depth + 1, tab)
 
         if self.alt_no == 2:
