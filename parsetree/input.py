@@ -1,7 +1,14 @@
+from error import ReadFileError
 from tokenizer import TOKEN_MAP, Tokenizer
 
 
 class Input:
+    file = None
+
+    @staticmethod
+    def set_input_file(file_name):
+        Input.file = open(file_name, "r")
+
     def __init__(self):
         self.id_list = None
 
@@ -14,10 +21,15 @@ class Input:
 
         Tokenizer.check_and_skip_token(";", "Input")
 
-    def print(self, depth = 0, tab = "\t"):
-        print(depth * tab + "read ", end = "")
+    def print(self, depth=0, tab="\t"):
+        print(depth * tab + "read ", end="")
         self.id_list.print()
         print(";")
 
     def execute(self):
-        return self
+        if Input.file == None:
+            raise ReadFileError()
+
+        from .id import Id
+        self.id_list.execute(lambda id: Id.set_id(
+            id, int(Input.file.readline())))

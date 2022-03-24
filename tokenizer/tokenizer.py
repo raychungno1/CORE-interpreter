@@ -1,5 +1,6 @@
 from tokenizer import TOKEN_MAP
 
+
 class Tokenizer:
     instance = None
 
@@ -24,12 +25,12 @@ class Tokenizer:
         """Checks if the next token matches a given token type, raising an error otherwise."""
 
         if Tokenizer.get_token() == TOKEN_MAP[token]:
-                Tokenizer.skip_token()
+            Tokenizer.skip_token()
         else:
             from error import GrammarError
             raise GrammarError(token, stmt_type)
 
-    def __init__(self, code_file, input_file):
+    def __init__(self, code_file):
         """Initializes a new Tokenizer with input file \"file_name\"."""
         if Tokenizer.instance is not None:
             return
@@ -38,7 +39,6 @@ class Tokenizer:
         self.token_ids = []
         self.isEOF = False
         self.code_file = open(code_file, "r")
-        self.input_file = open(input_file, "r")
 
         line = self.code_file.readline()
         if (line):
@@ -76,7 +76,7 @@ class Tokenizer:
 
     def intVal(self):
         """Return the int value of the current integer token."""
-        return self.tokens[0]
+        return int(self.tokens[0])
 
     def idName(self):
         """Return the value of the current identifier token."""

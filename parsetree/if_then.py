@@ -30,8 +30,8 @@ class IfThen:
         Tokenizer.check_and_skip_token("end", "if-then")
         Tokenizer.check_and_skip_token(";", "if-then")
 
-    def print(self, depth = 0, tab = "\t"):
-        print(depth * tab + "if ", end = "")
+    def print(self, depth=0, tab="\t"):
+        print(depth * tab + "if ", end="")
         self.cond.print()
         print(" then")
         self.stmt_seq_1.print(depth + 1, tab)
@@ -43,4 +43,8 @@ class IfThen:
         print(depth * tab + "end;")
 
     def execute(self):
-        return self
+        if self.cond.execute():
+            self.stmt_seq_1.execute()
+
+        elif self.alt_no == 2:
+            self.stmt_seq_2.execute()

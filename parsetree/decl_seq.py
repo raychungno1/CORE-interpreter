@@ -20,10 +20,10 @@ class DeclSeq:
         from .id import Id
         Id.declaring = False
 
-    def print(self, depth = 0, tab = "\t"):
+    def print(self, depth=0, tab="\t"):
         self.decl.print(depth, tab)
         if self.alt_no == 2:
             self.decl_seq.print(depth, tab)
 
     def execute(self):
-        return self
+        pass

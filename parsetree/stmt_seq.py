@@ -17,10 +17,12 @@ class StmtSeq:
             self.stmt_seq = StmtSeq()
             self.stmt_seq.parse()
 
-    def print(self, depth = 0, tab = "\t"):
+    def print(self, depth=0, tab="\t"):
         self.stmt.print(depth, tab)
         if self.alt_no == 2:
             self.stmt_seq.print(depth, tab)
 
     def execute(self):
-        return self
+        self.stmt.execute()
+        if self.alt_no == 2:
+            self.stmt_seq.execute()

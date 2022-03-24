@@ -1,16 +1,19 @@
 import sys
-from tokenizer import TOKEN_MAP, Tokenizer
-from parsetree import Prog
-from error import GrammarError, IdMissingError
+from tokenizer import Tokenizer
+from parsetree import Prog, Input
 
 code = sys.argv[1]
+Tokenizer(code)  # initialize tokenizer
+
 input_file = sys.argv[2]
-Tokenizer(code, input_file)  # initialize tokenizer
+Input.set_input_file(input_file)  # initialize input file
 
 prog = Prog()
+prog.parse()
 print(5 * "-")
-prog.parse().print(0, 4 * " ")
+prog.print(0, 4 * " ")
 print(5 * "-")
+prog.execute()
 
 # Tokenizer.check_and_skip_token("program", "program")
 # raise IdMissingError("x")

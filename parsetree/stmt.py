@@ -48,7 +48,7 @@ class Stmt:
         else:
             raise GrammarError("id / if / while / read / write", "Statement")
 
-    def print(self, depth=0, tab = "\t"):
+    def print(self, depth=0, tab="\t"):
         if self.alt_no == 1:
             self.assign.print(depth, tab)
 
@@ -65,4 +65,17 @@ class Stmt:
             self.output.print(depth, tab)
 
     def execute(self):
-        return self
+        if self.alt_no == 1:
+            self.assign.execute()
+
+        elif self.alt_no == 2:
+            self.if_then.execute()
+
+        elif self.alt_no == 3:
+            self.loop.execute()
+
+        elif self.alt_no == 4:
+            self.input.execute()
+
+        else:
+            self.output.execute()

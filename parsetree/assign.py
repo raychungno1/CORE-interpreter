@@ -26,10 +26,11 @@ class Assign:
 
         Tokenizer.check_and_skip_token(";", "Assign")
 
-    def print(self, depth = 0, tab = "\t"):
-        print(depth * tab + self.id + " = ", end = "")
+    def print(self, depth=0, tab="\t"):
+        print(depth * tab + self.id + " = ", end="")
         self.exp.print()
         print(";")
 
     def execute(self):
-        return self
+        from .id import Id
+        Id.set_id(self.id, self.exp.execute())

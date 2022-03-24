@@ -12,7 +12,7 @@ class IdList:
         if (Tokenizer.get_token() == TOKEN_MAP["id"]):
             self.id = Tokenizer.id_name()
             Tokenizer.skip_token()
-            
+
             from .id import Id
             Id.add_id(self.id)
             if not Id.has_id(self.id):
@@ -28,10 +28,12 @@ class IdList:
             self.id_list.parse()
 
     def print(self):
-        print(self.id, end = "")
+        print(self.id, end="")
         if self.alt_no == 2:
-            print(", ", end = "")
+            print(", ", end="")
             self.id_list.print()
 
-    def execute(self):
-        return self
+    def execute(self, func):
+        func(self.id)
+        if self.alt_no == 2:
+            self.id_list.execute(func)

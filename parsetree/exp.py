@@ -33,11 +33,18 @@ class Exp:
             return
 
         if self.alt_no == 2:
-            print(" + ", end = "")
+            print(" + ", end="")
         else:
-            print(" - ", end = "")
+            print(" - ", end="")
 
         self.exp.print()
 
     def execute(self):
-        return self
+        if self.alt_no == 1:
+            return self.fac.execute()
+
+        elif self.alt_no == 2:
+            return self.fac.execute() + self.exp.execute()
+
+        else:
+            return self.fac.execute() - self.exp.execute()

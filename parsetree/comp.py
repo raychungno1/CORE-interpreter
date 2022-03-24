@@ -16,23 +16,42 @@ class Comp:
         self.op_1.parse()
 
         if TOKEN_MAP[Tokenizer.get_token()] in ["!=", "==", "<", ">", "<=", ">="]:
-            self.comp_op = Tokenizer.get_token()
+            self.comp_op = TOKEN_MAP[Tokenizer.get_token()]
             Tokenizer.skip_token()
         else:
             raise GrammarError("!= / == / < / > / <= / >=", "Comparison")
 
         self.op_2 = Op()
         self.op_2.parse()
-        
+
         Tokenizer.check_and_skip_token(")", "Comparison")
 
     def print(self):
-        print("(", end = "")
+        print("(", end="")
         self.op_1.print()
-        print(f" {TOKEN_MAP[self.comp_op]} ", end = "")
+        print(f" {self.comp_op} ", end="")
         self.op_2.print()
-        print(")", end = "")
+        print(")", end="")
         return self
 
     def execute(self):
-        return self
+        if self.comp_op == "!=":
+            return self.op_1.execute() != self.op_2.execute()
+
+        elif self.comp_op == "==":
+            return self.op_1.execute() == self.op_2.execute()
+
+        elif self.comp_op == "<":
+            return self.op_1.execute() < self.op_2.execute()
+
+        elif self.comp_op == ">":
+            return self.op_1.execute() > self.op_2.execute()
+
+        elif self.comp_op == "<=":
+            return self.op_1.execute() <= self.op_2.execute()
+
+        elif self.comp_op == "<=":
+            return self.op_1.execute() >= self.op_2.execute()
+
+        else:
+            return False

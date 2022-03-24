@@ -39,13 +39,21 @@ class Op:
 
     def print(self):
         if self.alt_no == 1:
-            print(self.int, end = "")
+            print(self.int, end="")
         elif self.alt_no == 2:
-            print(self.id, end = "")
+            print(self.id, end="")
         else:
-            print("(", end = "")
+            print("(", end="")
             self.exp.print()
-            print(")", end = "")
+            print(")", end="")
 
     def execute(self):
-        return self
+        if self.alt_no == 1:
+            return self.int
+
+        elif self.alt_no == 2:
+            from .id import Id
+            return Id.get_val(self.id)
+
+        else:
+            return self.exp.execute()

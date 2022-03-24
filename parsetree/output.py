@@ -14,10 +14,11 @@ class Output:
 
         Tokenizer.check_and_skip_token(";", "Output")
 
-    def print(self, depth = 0, tab = "\t"):
-        print(depth * tab + "write ", end = "")
+    def print(self, depth=0, tab="\t"):
+        print(depth * tab + "write ", end="")
         self.id_list.print()
         print(";")
 
     def execute(self):
-        return self
+        from .id import Id
+        self.id_list.execute(lambda id: print(f"{id} = {Id.get_val(id)}"))

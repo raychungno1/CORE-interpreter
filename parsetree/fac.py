@@ -22,8 +22,12 @@ class Fac:
         self.op.print()
 
         if self.alt_no == 2:
-            print(" * ", end = "")
+            print(" * ", end="")
             self.fac.print()
 
     def execute(self):
-        return self
+        if self.alt_no == 1:
+            return self.op.execute()
+
+        else:
+            return self.op.execute() * self.fac.execute()

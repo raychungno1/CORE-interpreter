@@ -14,11 +14,11 @@ class Decl:
 
         Tokenizer.check_and_skip_token(";", "Declaration")
 
-    def print(self, depth = 0, tab = "\t"):
-        print(depth * tab + "int", end = " ")
+    def print(self, depth=0, tab="\t"):
+        print(depth * tab + "int", end=" ")
         self.id_list.print()
         print(";")
         return self
 
     def execute(self):
-        return self
+        pass

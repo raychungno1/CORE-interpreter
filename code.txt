@@ -1,6 +1,6 @@
 program int X1, X4; int X2, X3, X7;
 
-begin X1=0; X2=1; X3=1; read X4;
+begin X1=0; X2=1; read X3, X4;
 
      while (X1 < X4) loop
           X7=X2+X3; X2=X3; X3=X7; X1=X1+1;
@@ -8,15 +8,15 @@ begin X1=0; X2=1; X3=1; read X4;
 
      write X2;
 
-     if [(X1 == 0) && !(X2 > 0)] then
+     if [(X1 == 1) && !(X2 > 2)] then
           write X1;
      else
           write X2;
      end;
 
-     if [(X2 == 0) || (X1 < 0)] then
+     if [(X2 == 3) || (X1 < 4)] then
           write X2;
           X3 = (1 + 2) * (X2 - 4);
      end;
-
+     write X1, X2, X3, X4;
 end

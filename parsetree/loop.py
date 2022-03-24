@@ -22,12 +22,13 @@ class Loop:
         Tokenizer.check_and_skip_token("end", "if-then")
         Tokenizer.check_and_skip_token(";", "if-then")
 
-    def print(self, depth = 0, tab = "\t"):
-        print(depth * tab + "while ", end = "")
+    def print(self, depth=0, tab="\t"):
+        print(depth * tab + "while ", end="")
         self.cond.print()
         print(" loop")
         self.stmt_seq.print(depth + 1, tab)
         print(depth * tab + "end;")
 
     def execute(self):
-        return self
+        while self.cond.execute() == True:
+            self.stmt_seq.execute()

@@ -29,7 +29,7 @@ class Cond:
                 self.alt_no = 4
             else:
                 raise GrammarError("&& / ||", "Condition")
-            
+
             Tokenizer.skip_token()
             self.cond_2 = Cond()
             self.cond_2.parse()
@@ -47,20 +47,30 @@ class Cond:
             self.comp.print()
 
         elif self.alt_no == 2:
-            print("!", end = "")
+            print("!", end="")
             self.cond_1.print()
 
         else:
-            print("[", end = "")
+            print("[", end="")
             self.cond_1.print()
-            
+
             if self.alt_no == 3:
-                print(" && ", end = "")
+                print(" && ", end="")
             else:
-                print(" || ", end = "")
+                print(" || ", end="")
 
             self.cond_2.print()
-            print("]", end = "")
+            print("]", end="")
 
     def execute(self):
-        return self
+        if self.alt_no == 1:
+            return self.comp.execute()
+
+        elif self.alt_no == 2:
+            return not(self.cond_1.execute())
+
+        elif self.alt_no == 3:
+            return self.cond_1.execute() and self.cond_2.execute()
+
+        else:
+            return self.cond_1.execute() or self.cond_2.execute()

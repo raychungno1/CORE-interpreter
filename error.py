@@ -8,6 +8,7 @@ class GrammarError(Exception):
     def __str__(self):
         return f"Expected \"{self.token}\" in statement \"{self.stmt_type}\""
 
+
 class IdDuplicateError(Exception):
     """Error raised for a duplicate id during declaration"""
 
@@ -17,6 +18,7 @@ class IdDuplicateError(Exception):
     def __str__(self):
         return f"Identifier \"{self.id_name}\"  already declared"
 
+
 class IdMissingError(Exception):
     """Error raised for a missing id"""
 
@@ -25,3 +27,20 @@ class IdMissingError(Exception):
 
     def __str__(self):
         return f"Identifier \"{self.id_name}\" was not declared"
+
+
+class IdUninitializedError(Exception):
+    """Error raised for a missing id"""
+
+    def __init__(self, id_name):
+        self.id_name = id_name
+
+    def __str__(self):
+        return f"Identifier \"{self.id_name}\" was not initialized"
+
+
+class ReadFileError(Exception):
+    """Error for a missing or empty input file"""
+
+    def __str__(self):
+        return f"Input file missing or empty"
