@@ -1,2 +1,11 @@
 INSTRUCTIONS:
-  Run the comand "python main.py code.txt input.txt", replacing "code.txt" with the program file and "input.txt" with the data file.
+  Run the comand "python main.py test/code_1.txt test/input_1.txt", replacing "code.txt" with the program file and "input.txt" with the data file.
+
+  The "test" folder contains the following test programs:
+
+    - code_1 / input_1:
+      A program that tests all variants of all parsetree classes
+
+    - code_2 / input_2:
+      A program that calculates the "nth" value in the fibonacci sequence (specified in "input_2.txt")
+  
