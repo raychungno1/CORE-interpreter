@@ -1,17 +1,2 @@
-main.py:
-  Contains the main() function to test the Tokenizer class
-
-test.txt:
-  Test cases provided to test the Tokenizer class
-
-testDataForTokenizer:
-  Filed used as a command line arg. to try each test case
-
-token_map.py:
-  A dictionary that defines the token to token-id mappings
-
-tokenizer.py:
-  The Tokenizer class
-
 INSTRUCTIONS:
-  Run the comand "python3 main.py test.txt", replacing test.txt with the file you want to tokenize.
+  Run the comand "python main.py code.txt input.txt", replacing "code.txt" with the program file and "input.txt" with the data file.

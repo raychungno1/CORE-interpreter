@@ -22,7 +22,7 @@ class Op:
             Tokenizer.skip_token()
 
             from .id import Id
-            if not Id.has_id(self.id):
+            if not(Id.has_id(self.id)):
                 raise IdMissingError(self.id)
 
         elif first_token == TOKEN_MAP["("]:

@@ -16,7 +16,7 @@ class IdDuplicateError(Exception):
         self.id_name = id_name
 
     def __str__(self):
-        return f"Identifier \"{self.id_name}\"  already declared"
+        return f"Identifier \"{self.id_name}\" already declared"
 
 
 class IdMissingError(Exception):
@@ -36,7 +36,7 @@ class IdUninitializedError(Exception):
         self.id_name = id_name
 
     def __str__(self):
-        return f"Identifier \"{self.id_name}\" was not initialized"
+        return f"Identifier \"{self.id_name}\" was declared but not initialized"
 
 
 class ReadFileError(Exception):
