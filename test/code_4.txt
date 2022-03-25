@@ -1,0 +1,25 @@
+program int DECIMAL, BINARY, COUNT, REMINDER, MULTIPLIER;
+
+begin 
+     read DECIMAL;
+     BINARY = 0;
+     MULTIPLIER = 1;
+
+     while (DECIMAL > 0) loop
+          COUNT = 0;
+          while (DECIMAL > ((2 * COUNT) + 1)) loop
+               COUNT = COUNT + 1;
+          end;
+
+          if (DECIMAL != (2 * COUNT)) then
+               BINARY = BINARY + MULTIPLIER;
+               DECIMAL = DECIMAL - (COUNT + 1);
+          else
+               DECIMAL = DECIMAL - COUNT;
+          end;
+
+          MULTIPLIER = MULTIPLIER * 10;
+     end;
+
+     write BINARY;
+end

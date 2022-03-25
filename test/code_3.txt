@@ -1,0 +1,25 @@
+program int X1, X2, X3, TEMP;
+
+begin 
+     read X1, X2, X3;
+
+     if (X1 > X2) then    
+          TEMP = X2;
+          X2 = X1;
+          X1 = TEMP;
+     end;
+
+     if (X1 > X3) then
+          TEMP = X3;
+          X3 = X1;
+          X1 = TEMP;
+     end;
+
+     if (X2 > X3) then
+          TEMP = X3;
+          X3 = X2;
+          X2 = TEMP;
+     end;
+
+     write X1, X2, X3;
+end

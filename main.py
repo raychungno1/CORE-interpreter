@@ -14,12 +14,3 @@ print(5 * "-")
 prog.print(0, 4 * " ")
 print(5 * "-")
 prog.execute()
-
-# Tokenizer.check_and_skip_token("program", "program")
-# raise IdMissingError("x")
-# while token := Tokenizer.get_token():
-#     print(token, end=" ")
-#     Tokenizer.skip_token()
-# print()
-# prog = Prog()
-# prog.parse().print().execute()

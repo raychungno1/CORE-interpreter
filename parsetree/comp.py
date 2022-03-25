@@ -50,7 +50,7 @@ class Comp:
         elif self.comp_op == "<=":
             return self.op_1.execute() <= self.op_2.execute()
 
-        elif self.comp_op == "<=":
+        elif self.comp_op == ">=":
             return self.op_1.execute() >= self.op_2.execute()
 
         else:
