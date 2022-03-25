@@ -10,7 +10,7 @@ INSTRUCTIONS:
       A program that calculates the "nth" value (specified in "input_2.txt") in the fibonacci sequence 
 
     - code_3 / input_3:
-      A program that sorts 3 numbers (specified in "input_2.txt") in increasing order
+      A program that sorts 3 numbers (specified in "input_3.txt") in increasing order
   
     - code_4 / input_4:
-      A program that prints the binary conversion for a positive number (specified in "input_2.txt")
+      A program that prints the binary conversion for a positive number (specified in "input_4.txt")
